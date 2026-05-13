@@ -1569,8 +1569,11 @@ std::string simpleToClashR(RESPONSE_CALLBACK_ARGS) {
   }
   if (url == "sublink") {
     *status_code = 400;
-    return "Please insert your subscription link instead of clicking the "
-           "default link.";
+    return "Invalid request: the default placeholder was not replaced with a "
+           "subscription link.\n"
+           "无效请求：默认占位符没有被替换为订阅链接。\n"
+           "Please provide a real subscription URL in the sublink parameter.\n"
+           "请在 sublink 参数中提供真实订阅链接。";
   }
   request.argument.emplace("target", "clashr");
   request.argument.emplace("url", urlEncode(url));
@@ -1600,8 +1603,12 @@ std::string surgeConfToClash(RESPONSE_CALLBACK_ARGS) {
   }
   if (url == "link") {
     *status_code = 400;
-    return "Please insert your subscription link instead of clicking the "
-           "default link.";
+    return "Invalid request: the default placeholder was not replaced with a "
+           "Surge configuration link.\n"
+           "无效请求：默认占位符没有被替换为 Surge 配置链接。\n"
+           "Please provide a real Surge configuration URL in the link "
+           "parameter.\n"
+           "请在 link 参数中提供真实 Surge 配置链接。";
   }
   writeLog(0, "SurgeConfToClash called with url '" + url + "'.",
            LOG_LEVEL_INFO);
