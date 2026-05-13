@@ -665,7 +665,8 @@ std::string subconverter(RESPONSE_CALLBACK_ARGS) {
           argAppendUserinfo = getUrlArg(argument, "append_info");
   tribool argPrependInsert = getUrlArg(argument, "prepend"),
           argGenClassicalRuleProvider = getUrlArg(argument, "classic"),
-          argTLS13 = getUrlArg(argument, "tls13");
+          argTLS13 = getUrlArg(argument, "tls13"),
+          argProviderProxyDirect = getUrlArg(argument, "provider_proxy_direct");
 
   std::string base_content, output_content;
   ProxyGroupConfigs lCustomProxyGroups = global.customProxyGroups;
@@ -765,6 +766,7 @@ std::string subconverter(RESPONSE_CALLBACK_ARGS) {
   ext.clash_new_field_name = argClashNewField.get(global.clashUseNewField);
   ext.clash_script = argGenClashScript.get();
   ext.clash_classical_ruleset = argGenClassicalRuleProvider.get();
+  ext.provider_proxy_direct = argProviderProxyDirect.get(true);
   // 无论 expand 取何值，均强制使用 Mihomo 新字段名（proxy-groups / rules）
   // 避免因全局配置为旧字段名而导致 Mihomo 无法识别
   ext.clash_new_field_name = true;
