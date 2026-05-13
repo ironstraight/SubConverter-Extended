@@ -1635,8 +1635,11 @@ std::string surgeConfToClash(RESPONSE_CALLBACK_ARGS) {
   base_content = fetchFile(url, proxy, global.cacheConfig);
 
   if (ini.parse(base_content) != INIREADER_EXCEPTION_NONE) {
-    std::string errmsg =
-        "Parsing Surge config failed! Reason: " + ini.get_last_error();
+    std::string errmsg = "Invalid request: failed to parse Surge "
+                         "configuration.\n"
+                         "无效请求：Surge 配置解析失败。\n"
+                         "Reason / 原因: " +
+                         ini.get_last_error();
     // std::cerr<<errmsg<<"\n";
     writeLog(0, errmsg, LOG_LEVEL_ERROR);
     *status_code = 400;
